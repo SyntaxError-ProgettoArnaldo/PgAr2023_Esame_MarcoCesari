@@ -11,11 +11,10 @@ public class Partita
 {
 
 
-    private static final int INIZIO = 0;
+    private static final int INIZIO = 1;
     private int indiceFine;
     private Giocatore giocatore;
     private Mappa mappa;
-
     private int pos; //posizione del giocatore
 
     private ArrayList<Integer> posOccupate;
@@ -27,9 +26,9 @@ public class Partita
         this.mappa = mappa;
         //qui ci sraa la inizializzazione randomica della mappa
         //QUINDI BASE OPPURE LEGGI MAPPA
-        this.pos = 0;
+        this.pos = 1;
         this.posOccupate = new ArrayList<>();
-        this.indiceFine = this.mappa.getSize();
+        this.indiceFine = mappa.getMappa().get(mappa.getSize()-1).getId();
 
     }
 
@@ -38,12 +37,15 @@ public class Partita
         while(true)
         {
             scelta();
+            Random random = new Random();
+            int randomNumber = random.nextInt(100);
 
             if(pos == indiceFine) {
                 System.out.println("SEI ALLA FINE");
-                break;
+                return true;
+
             }
-            else
+            else if(randomNumber >66)
             {
                 if(!interazioneGioco())
                 {
@@ -51,10 +53,12 @@ public class Partita
                 }
 
             }
+            else {
+                InterazioneUtente.tuttoTace();
+            }
 
         }
 
-    return true;
     }
 
     private boolean interazioneGioco() throws InterruptedException {
@@ -97,7 +101,7 @@ public class Partita
         Random random = new Random();
         int randomIndex = random.nextInt(options.length);
         String randomChoice = options[randomIndex];
-        if (randomChoice == "vita")
+        if (randomChoice.equals("vita"))
         {
 
             int randomNumber = random.nextInt(16) - 5;
@@ -159,9 +163,8 @@ public class Partita
 
         for (int j = 0; j < mappa.getMappa().get(pos).getCollegamenti().size(); j++)
         {
-            if(giaPassato(mappa.getMappa().get(pos).getCollegamenti().get(j)))
+            if(nonGiaPassato(mappa.getMappa().get(pos).getCollegamenti().get(j)))
             {
-
                 posizioniLibere.add(mappa.getMappa().get(pos).getCollegamenti().get(j));
             }
         }
@@ -170,7 +173,7 @@ public class Partita
     }
 
 
-    public boolean giaPassato(int pos)
+    public boolean nonGiaPassato(int pos)
     {
 
         return !posOccupate.contains(pos);

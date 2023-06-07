@@ -7,25 +7,17 @@ public class Giocatore
     public final int VITA = 20;
     public final int ATTACCO = 5;
 
-    private String nome;
     private int vita;
     private int attacco;
 
-    public Giocatore(String nome)
+    public Giocatore()
     {
-        this.nome = nome;
         this.vita = VITA;
         this.attacco = ATTACCO;
     }
 
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public int getVita() {
         return vita;

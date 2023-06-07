@@ -21,6 +21,7 @@ public class InterazioneUtente
         System.out.println(AnsiColors.RESET);
 
     }
+
     public static String chiediNome()
     {
         System.out.println("Come prima cosa inserisci il nome del tuo personaggio...");
@@ -100,7 +101,6 @@ public class InterazioneUtente
     public static void statInizioScontro(Mostro m, Giocatore g)
     {
         System.out.println("Ti sei imbattuto in un mostro della foresta");
-        System.out.println("Giocatore "+g.getNome());
         System.out.println("Vita---> "+g.getVita());
         System.out.println("Attacco---> "+g.getAttacco());
         System.out.println("Mostro");
@@ -117,8 +117,6 @@ public class InterazioneUtente
 
     public static void inizioPartita()
     {
-
-
         System.out.println(AnsiColors.RED);
         System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
         System.out.println("Buona fortuna, che la partita abbia inizio!");
@@ -148,4 +146,35 @@ public class InterazioneUtente
         System.out.println(AnsiColors.RESET);
     }
 
+    public static void mostraPunteggio(int punteggio)
+    {
+        System.out.println(AnsiColors.RED);
+        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
+        System.out.println("Ciao avventuriero");
+        System.out.println("IL TUO PUNTEGGIO: "+punteggio);
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(AnsiColors.RESET);
+    }
+
+    public static void persoPartita()
+    {
+        System.out.println(AnsiColors.RED);
+        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
+        System.out.println("Hai perso la battaglia guerriero!");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(AnsiColors.RESET);
+    }
+
+    public static void inizioGame() {
+        System.out.println(AnsiColors.RED);
+        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
+        System.out.println("Combatti con onore");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(AnsiColors.RESET);
+    }
+
+    public static void tuttoTace()
+    {
+        System.out.println("Sei fortunato, qui tutto tace, puoi continuare");
+    }
 }

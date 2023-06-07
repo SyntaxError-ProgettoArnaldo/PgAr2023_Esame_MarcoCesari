@@ -13,14 +13,11 @@ public class Main
 
 
         InterazioneUtente.inizio();
-        Giocatore g = new Giocatore(chiediNome());
+
+        Game game = new Game();
+        game.startGame();
 
 
-        Mappa mappa = new Mappa(Mappa.scegliMappa());
-
-        Partita partita = new Partita(g,mappa);
-        InterazioneUtente.inizioPartita();
-        partita.iniziaPartita();
 
 
 
