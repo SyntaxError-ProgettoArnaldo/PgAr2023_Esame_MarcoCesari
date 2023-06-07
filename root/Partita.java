@@ -1,9 +1,6 @@
 package root;
 
 import UnibsLib.InputData;
-
-import javax.xml.stream.XMLStreamException;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,7 +8,6 @@ public class Partita
 {
 
 
-    private static final int INIZIO = 1;
     private int indiceFine;
     private Giocatore giocatore;
     private Mappa mappa;
@@ -20,29 +16,38 @@ public class Partita
     private ArrayList<Integer> posOccupate;
     private ArrayList<Integer> posVicoliCiechi = new ArrayList<>();
 
-    public Partita(Giocatore giocatore,Mappa mappa) throws XMLStreamException, FileNotFoundException {
+    public Partita(Giocatore giocatore,Mappa mappa)  {
 
         this.giocatore = giocatore;
         this.mappa = mappa;
-        //qui ci sraa la inizializzazione randomica della mappa
-        //QUINDI BASE OPPURE LEGGI MAPPA
         this.pos = 1;
         this.posOccupate = new ArrayList<>();
         this.indiceFine = mappa.getMappa().get(mappa.getSize()-1).getId();
 
     }
 
-    public boolean iniziaPartita() throws InterruptedException {
+    public boolean iniziaPartita() {
 
         while(true)
         {
+
             scelta();
             Random random = new Random();
             int randomNumber = random.nextInt(100);
 
             if(pos == indiceFine) {
-                System.out.println("SEI ALLA FINE");
-                return true;
+                InterazioneUtente.bossFinale();
+                Scontro s = new Scontro(giocatore,new Boss());
+                if(s.scontro())
+                {
+                    InterazioneUtente.bossFinaleSconfitto();
+                    return true;
+                }
+                else {
+                    InterazioneUtente.bossFinaleNonSconfitto();
+                    return false;
+                }
+
 
             }
             else if(randomNumber >66)
@@ -61,7 +66,7 @@ public class Partita
 
     }
 
-    private boolean interazioneGioco() throws InterruptedException {
+    private boolean interazioneGioco() {
         String[] options = {"mostro", "modificatori"};
 
         Random random = new Random();
@@ -118,10 +123,11 @@ public class Partita
 
     public void scelta()
     {
-
+        //mostra stat
         InterazioneUtente.mostraStat(giocatore,pos);
         if(posLibere(pos).size()==0)
         {
+            //se non ci sono vie di uscita
             System.out.println("sei in un vicolo cieco!");
             posVicoliCiechi.add(pos);
             System.out.println("L unica scelta che hai è tornare indietro!");
@@ -136,8 +142,6 @@ public class Partita
                 pos = 0;
             }
 
-
-
             return;
         }
 
@@ -145,7 +149,7 @@ public class Partita
 
         InterazioneUtente.scelta(posizioniLibere);
 
-        int scelta=0;
+        int scelta;
         do{
             scelta= InputData.readInteger("Inserisci uno di questi numeri: ");
         }while (!posizioniLibere.contains(scelta));
@@ -157,6 +161,11 @@ public class Partita
 
     }
 
+    /**
+     * Cerca le posizioni che nons ono ancora state toccate
+     * @param pos posizione corrente del giocatote
+     * @return Arraylist delle posizioni libere
+     */
     public ArrayList<Integer> posLibere(int pos)
     {
         ArrayList<Integer> posizioniLibere = new ArrayList<>();

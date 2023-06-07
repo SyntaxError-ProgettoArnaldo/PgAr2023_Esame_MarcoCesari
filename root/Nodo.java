@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Nodo
 {
-    private int id;
-    private String tipo;
-    private ArrayList<Integer> collegamenti;
+    private final int id;
+    private final String tipo;
+    private final ArrayList<Integer> collegamenti;
 
     public Nodo(int id, String tipo, ArrayList<Integer> collegamenti) {
         this.id = id;
@@ -18,23 +18,13 @@ public class Nodo
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getTipo() {
-        return tipo;
-    }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+
 
     public ArrayList<Integer> getCollegamenti() {
         return collegamenti;
     }
 
-    public void setCollegamenti(ArrayList<Integer> collegamenti) {
-        this.collegamenti = collegamenti;
-    }
+
 }

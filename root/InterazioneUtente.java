@@ -2,10 +2,6 @@ package root;
 
 import UnibsLib.AnsiColors;
 import UnibsLib.InputData;
-import UnibsLib.PrettyStrings;
-
-import java.io.PipedOutputStream;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class InterazioneUtente
@@ -22,11 +18,6 @@ public class InterazioneUtente
 
     }
 
-    public static String chiediNome()
-    {
-        System.out.println("Come prima cosa inserisci il nome del tuo personaggio...");
-        return InputData.readNonEmptyString("");
-    }
     public static void mostraStat(Giocatore g,int posizione)
     {
 
@@ -137,14 +128,7 @@ public class InterazioneUtente
 
     }
 
-    public static void finePartita()
-    {
-        System.out.println(AnsiColors.RED);
-        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
-        System.out.println("Hai perso questa battaglia! nessun punto ti è stato asseganto, ritenta");
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println(AnsiColors.RESET);
-    }
+
 
     public static void mostraPunteggio(int punteggio)
     {
@@ -176,5 +160,43 @@ public class InterazioneUtente
     public static void tuttoTace()
     {
         System.out.println("Sei fortunato, qui tutto tace, puoi continuare");
+    }
+
+    public static void bossFinale()
+    {
+        System.out.println(AnsiColors.RED);
+        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
+        System.out.println("SEI ALLA FINE");
+        System.out.println("ORA DOVRAI SCONTRARTI CON IL BOSS FINALE");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(AnsiColors.RESET);
+    }
+
+    public static void bossFinaleSconfitto()
+    {
+        System.out.println(AnsiColors.RED);
+        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
+        System.out.println("COMPLIMENTI HAI SCONFITTO IL BOS");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(AnsiColors.RESET);
+    }
+    public static void bossFinaleNonSconfitto()
+    {
+        System.out.println(AnsiColors.RED);
+        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
+        System.out.println("NON SEI STATO ABBASTANZA DEGNO");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(AnsiColors.RESET);
+    }
+
+
+
+    public static void fineVite()
+    {
+        System.out.println(AnsiColors.RED);
+        System.out.println("------------------------------------------------------------------LA DIREZIONE----------------------------------------------------------------------");
+        System.out.println("HAI FINITO LE TUE 10 VITE");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(AnsiColors.RESET);
     }
 }

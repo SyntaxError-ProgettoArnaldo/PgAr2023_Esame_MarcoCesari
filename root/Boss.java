@@ -2,12 +2,12 @@ package root;
 
 import java.util.Random;
 
-public class Mostro
+public class Boss
 {
-    private int vita = 12;
-    private int attacco = 3;
+    private int vita = 18;
+    private int attacco = 4;
 
-    public Mostro()
+    public Boss()
     {
         Random random = new Random();
         int randomNumber = random.nextInt(11) - 5;
@@ -16,15 +16,10 @@ public class Mostro
         this.attacco+=randomNumber;
     }
 
-    public Mostro(int vita, int attacco)
-    {
-        this.vita = vita;
-        this.attacco = attacco;
-    }
-
     public int getVita() {
         return vita;
     }
+
 
 
     public int getAttacco() {
@@ -32,9 +27,4 @@ public class Mostro
     }
 
 
-    public int togliVita(int q)
-    {
-        this.vita-=q;
-        return this.vita;
-    }
 }

@@ -10,8 +10,6 @@ public class Xml
     private static final String PATH_INPUT = "file/Mappe.xml";
     static XMLInputFactory xmlif = null;
     static XMLStreamReader xmlr = null;
-    static XMLOutputFactory xmlof = null;
-    static XMLStreamWriter xmlw = null;
 
 
     /**
@@ -28,8 +26,8 @@ public class Xml
     
     public static ArrayList<ArrayList<Nodo>> leggiMappe() throws XMLStreamException, FileNotFoundException {
         inizializzaXMLLettura(PATH_INPUT);
-        ArrayList<ArrayList<Nodo>> listaMappe = new ArrayList<>();
-        ArrayList<Nodo> mappa = null;
+        ArrayList<ArrayList<Nodo>> listaMappe = new ArrayList<>();  //lista delle mappe
+        ArrayList<Nodo> mappa = null; //singola mappa
         ArrayList<Integer> link = null;     //lista dei collegamenti deI SINGOLI COLLEGAMENTI
         int id = 0;
         String tipo = null;
@@ -44,10 +42,8 @@ public class Xml
                     {
                         case "MAPPA" ->
                         {
-
+                            //quando trovi mappa
                             mappa = new ArrayList<>();
-
-
                         }
                         case "NODO" ->
                         {
@@ -84,12 +80,11 @@ public class Xml
                 {
                     if(xmlr.getLocalName().equals("NODO"))
                     {
-
-
+                        //aggiungi mappa singola
                         mappa.add(new Nodo(id,tipo,link));
 
                     } else if (xmlr.getLocalName().equals("MAPPA")) {
-
+                        //aggiungi mappa alla lista
                         listaMappe.add(mappa);
                     }
 
